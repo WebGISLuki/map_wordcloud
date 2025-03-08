@@ -2,7 +2,7 @@
 
   <div class="wordcloud-container">
   
-    <div class="wordcloud" id="charts-content"></div>
+    <div class="wordcloud" id="charts-content" ></div>
   
     <div class="mask-uploader">
   
@@ -11,7 +11,7 @@
       <div class="font-size-sliders">
         <div class="slider-container">
           <span class="slider-label">最小值</span>
-          <input type="range" min="5" max="50" v-model="minFontSize" @input="updateFontSize" class="slider">
+          <input type="range" min="1" max="50" v-model="minFontSize" @input="updateFontSize" class="slider">
           <span class="slider-value">{{ minFontSize }}</span>
         </div>
         <div class="slider-container">
@@ -50,9 +50,9 @@
     height: '90%',
     right: null,    bottom: null,
     sizeRange: [minFontSize.value, maxFontSize.value],
-    rotationRange: [-90, 90],
-    rotationStep: 90,
-    gridSize: 4,
+    rotationRange: [0, 0],
+    rotationStep: 0,
+    gridSize: 6,
     drawOutOfBound: false,
     layoutAnimation: true,
     textStyle: {
@@ -60,9 +60,10 @@
     fontWeight: 'bold',
     color: function () {
       return 'rgb(' + [
-        Math.round(Math.random() * 160),
-        Math.round(Math.random() * 160),
-        Math.round(Math.random() * 160)
+        
+        // Math.round(Math.random() * 160),
+        // Math.round(Math.random() * 160),
+        // Math.round(Math.random() * 160)
       ].join(',') + ')';
     },
     emphasis: {
@@ -72,7 +73,8 @@
         shadowColor: '#333',
         fontSize: 20
       }
-  }
+  },
+
 },
   emphasis: {
     focus: 'self',
@@ -95,11 +97,19 @@
     if (!file) return;
     const reader = new FileReader();
     reader.onload = (e) => {
-    maskImage.value = e.target.result;
-    DrawWordCloud();
+      maskImage.value = e.target.result;
+      // 设置背景图片
+      const chartDom = document.getElementById('charts-content');
+      if (chartDom) {
+        chartDom.style.backgroundImage = `url(${e.target.result})`;
+        chartDom.style.backgroundSize = 'contain';
+        chartDom.style.backgroundPosition = 'center';
+        chartDom.style.backgroundRepeat = 'no-repeat';
+      }
+      DrawWordCloud();
+    };
+    reader.readAsDataURL(file);  
   };
-  reader.readAsDataURL(file);  
-  }; 
   // 更新字体大小的方法
   const updateFontSize = () => {
   // 确保最大值始终大于最小值
@@ -126,7 +136,8 @@
         textStyle: {
           color: series.textStyle.color()
         }
-      }))
+      })),
+
     }))
   };
   if (maskImage.value) {
@@ -225,7 +236,7 @@
     background: #ddd;
     outline: none;
     border-radius: 5px;
-    -webkit-appearance: none;
+    //-webkit-appearance: none;
   
     &::-webkit-slider-thumb {
     -webkit-appearance: none;
