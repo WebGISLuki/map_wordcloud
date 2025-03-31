@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "b2wordcloud": "^2.0.2",
     "echarts": "^5.6.0",
     "echarts-wordcloud": "^2.1.0",
     "js2wordcloud": "^1.1.12",
@@ -17,6 +18,7 @@
     "lodash": "^4.17.21",
     "pinia": "^2.3.0",
     "vue": "^3.5.13",
+    "vue-b2wordcloud": "^1.0.5",
     "vue-wordcloud": "^1.1.1",
     "wordcloud2": "^1.0.0"
   },

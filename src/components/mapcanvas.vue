@@ -7,33 +7,44 @@
 </template>
 
 <script setup>
-    import { ref, onMounted } from 'vue';
+    import { ref, onMounted, watch } from 'vue';
+    import { useMapStore } from '@/store/mapStore';
 
     // 获取 canvas 元素的引用
     const mapCanvas = ref(null);
+    const mapStore = useMapStore();
 
     // 初始化画布
     let ctx = null;
 
     onMounted(() => {
-    initCanvas();
+        initCanvas();
+    });
+
+    // 监听GeoJSON数据变化
+    watch(() => mapStore.geoJsonData, (newData) => {
+        if (newData) {
+            const bounds = calculateBounds(newData);
+            setupCanvasSize(mapCanvas.value, bounds);
+            drawRegions(newData, bounds);
+        }
     });
 
     // 初始化画布
     const initCanvas = async () => {
-    const canvas = mapCanvas.value;
-    if (!canvas) {
-        console.error('Canvas 元素未找到');
-        return;
-    }
-    ctx = canvas.getContext('2d');
-    if (!ctx) {
-        console.error('无法获取画布上下文');
-        return;
+        const canvas = mapCanvas.value;
+        if (!canvas) {
+            console.error('Canvas 元素未找到');
+            return;
+        }
+        ctx = canvas.getContext('2d');
+        if (!ctx) {
+            console.error('无法获取画布上下文');
+            return;
     }
 
-    // 加载 JSON 数据并绘制
-    const data = await loadRegions();
+    // 如果已有GeoJSON数据，直接绘制
+    const data = mapStore.geoJsonData;
     if (data) {
         const bounds = calculateBounds(data);
         setupCanvasSize(canvas, bounds);
@@ -109,8 +120,8 @@
 
         // 清空画布
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = 'white'; // 设置填充颜色为白色
-        ctx.fillRect(0, 0, canvas.width, canvas.height); // 填充整个画布
+        //ctx.fillStyle = 'white'; // 设置填充颜色为白色
+        //ctx.fillRect(0, 0, canvas.width, canvas.height); // 填充整个画布
         // 遍历每个区域
         data.features.forEach((feature) => {
             const coordinates = feature.geometry.coordinates;
@@ -136,9 +147,9 @@
                     });
                     // 闭合路径并填充
                     ctx.closePath();
-                    ctx.fillStyle = 'rgba(0, 0, 255, 0.5)';
+                    ctx.fillStyle = 'rgba(128, 128, 128)';
                     ctx.fill();
-                    ctx.strokeStyle = 'blue';
+                    ctx.strokeStyle = '#404040';
                     ctx.stroke();
                 }))
             });
@@ -147,12 +158,15 @@
 
     // 导出为图片
     const saveAsImage = () => {
-    const canvas = mapCanvas.value;
-    const image = canvas.toDataURL('image/png');
-    const link = document.createElement('a');
-    link.href = image;
-    link.download = 'map.png';
-    link.click();
+        const canvas = mapCanvas.value;
+        const image = canvas.toDataURL('image/png');
+        // 保存图像数据到mapStore
+        mapStore.setMapImage(image);
+        // 创建下载链接
+        const link = document.createElement('a');
+        link.href = image;
+        link.download = 'map.png';
+        link.click();
     };
 </script>
 

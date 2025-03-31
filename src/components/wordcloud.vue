@@ -50,9 +50,9 @@
     height: '90%',
     right: null,    bottom: null,
     sizeRange: [minFontSize.value, maxFontSize.value],
-    rotationRange: [0, 0],
-    rotationStep: 0,
-    gridSize: 6,
+    rotationRange: [-90, 90],
+    rotationStep: 90,
+    gridSize: 0,
     drawOutOfBound: false,
     layoutAnimation: true,
     textStyle: {

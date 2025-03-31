@@ -10,6 +10,8 @@ export const useMapStore = defineStore('map', {
     isDrawing: false, // 是否处于绘制模式
     currentPolygon: null, // 当前正在绘制的多边形
     polygonPoints: [], // 当前多边形的顶点
+    geoJsonData: null, // 存储当前的GeoJSON数据
+    mapImage: null // 存储地图图像数据
   }),
   actions: {
     // 初始化地图
@@ -22,6 +24,7 @@ export const useMapStore = defineStore('map', {
 
     // 添加新的 GeoJSON 数据到地图
     addGeoJsonToMap(geoJsonData) {
+      this.geoJsonData = geoJsonData; // 存储GeoJSON数据
       const geoJsonLayer = L.geoJSON(geoJsonData).addTo(this.map);
       this.geoJsonLayers.push(geoJsonLayer); // 将新图层存储到数组中
 
@@ -97,6 +100,16 @@ export const useMapStore = defineStore('map', {
     onDoubleClick() {
       this.toggleDrawing(); // 结束绘制模式
       console.log('多边形绘制完成:', this.currentPolygon.getLatLngs()); // 输出多边形的顶点
+    },
+
+    // 存储地图图像数据
+    setMapImage(imageData) {
+      this.mapImage = imageData;
+    },
+
+    // 获取地图图像数据
+    getMapImage() {
+      return this.mapImage;
     },
   },
 });
