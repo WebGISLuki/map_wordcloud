@@ -5,26 +5,32 @@
             
         </div> -->
         <div ref="mapContainer" class="mymap"></div>
-        <button 
-            @click="toggleDrawing"
-            class="map_startdraw" 
-            :class="{map_startdraw_after: mapStore.isDrawing}">
-            {{mapStore.isDrawing ? '停止绘制' : '开始绘制'}}
-        </button>
 
-        
-        <button
-            @click = "deleteDraw"
-            class = "map_deletedraw"
-        >
-            清空地图
-        </button>
-        <button class="map_loadjson" @click="loadjson">
+
+        <!-- <button class="map_loadjson" @click="loadjson">
             加载geojson
         </button>
-        <button class="mapflushed" @click="mapflushed">刷新地图</button>
+        <button class="mapflushed" @click="mapflushed">刷新地图</button> -->
     </div>
+    <div class="mytoolbar">
+            <button 
+                
+                @click="toggleDrawing"
+                class="map_startdraw" 
+                :class="{map_startdraw_after: mapStore.isDrawing}">
+                <img src="../assets/编辑.png" width="18px" style="margin-top: 5px;">
+                <!-- {{mapStore.isDrawing ? '停止绘制' : '开始绘制'}} -->
+            </button>
 
+            
+            <button
+                @click = "deleteDraw"
+                class = "map_deletedraw"
+            >
+            <img src="../assets/清空.png" width="18px" style="margin-top: 5px;">
+                <!-- 清空地图 -->
+            </button>
+        </div>
 </template>
 
 <script setup name="leafletmap">
@@ -140,5 +146,17 @@
 </script>
 
 <style lang="scss" scoped>
-
+.mytoolbar{
+    position:absolute;
+    padding-bottom:10px ;
+    left:7px;
+    top:80px;
+    border:0;
+    background-color: #fff;
+    width:58px;
+    //height:14.5%;
+    box-shadow: 0 0 5px #000;
+    z-index: 10;
+    border-radius: 29px;
+}
 </style>

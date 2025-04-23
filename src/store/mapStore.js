@@ -17,8 +17,11 @@ export const useMapStore = defineStore('map', {
     // 初始化地图
     initializeMap(container) {
       this.map = L.map(container).setView([34, 113], 4);
-      L.tileLayer('https://tile-a.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors',
+      L.tileLayer('http://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}', {
+        subdomains: ['1', '2', '3', '4'],
+        minZoom: 1, // 最小放缩级别
+        maxZoom: 19, // 最大放缩级别
+        attribution: '&copy; 高德地图',
       }).addTo(this.map);
     },
 

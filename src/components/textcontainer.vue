@@ -1,18 +1,21 @@
 <template>
     <div class="textContainer">
-        <h3>文本容器</h3>
+        <h3 align="center">文本容器</h3>
         <div class="containerTitle">
-            关键词---权重
+            关键词-------权重
         </div>
-        <div v-for="item in container">
+        <div class="container">
+            <div v-for="item in container" >
             <!-- {{ item.word }}---{{ item.weight }} -->
             
-            <input class="word" type="text" style="border-radius: 5px;" v-model="item.name"/>
-            <input class="weight" type="text" style="border-radius: 5px;" v-model="item.value"/>
+            <input class="word" type="text" v-model="item.name"/>
+            <input class="weight" type="text" v-model="item.value"/>
         </div>
-        <button @click="addElement" style="position:absolute;bottom: 10px;">添加关键词</button>
-        <button @click="mapRender" style="position:absolute;bottom: 10px;left: 100px;">确认渲染</button>
-        <button @click="clearWords" style="position:absolute;bottom: 10px;left: 180px;">清空关键词</button>
+        </div>
+
+        <button @click="addElement" style="position:absolute;bottom: 15px;margin-right: 10px;">添加关键词</button>
+        <button @click="mapRender" style="position:absolute;bottom: 15px;left: 100px;">确认渲染</button>
+        <button @click="clearWords" style="position:absolute;bottom: 15px;left:67%;">清空关键词</button>
     </div>
 </template>
 
@@ -50,5 +53,15 @@
 </script>
 
 <style lang="scss" scoped>
-
+    .container{
+        margin-top: 20px;
+        border : 1px solid #000;
+        border-radius: 10px;
+        //position: absolute;
+        //top:85px;
+        width: 100%;
+        height:75%;
+        //display: none;
+        overflow: scroll;
+    }
 </style>

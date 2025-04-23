@@ -2,7 +2,7 @@
     <div class="mapcanvas">
         
         <canvas ref="mapCanvas" ></canvas>
-        <button @click="saveAsImage">保存为图片</button>
+        <button class="save-button" @click="saveAsImage">保存为图片</button>
     </div>
 </template>
 
@@ -147,9 +147,11 @@
                     });
                     // 闭合路径并填充
                     ctx.closePath();
-                    ctx.fillStyle = 'rgba(128, 128, 128)';
+                    //ctx.fillStyle = 'rgba(128, 128, 128)';
+                    ctx.fillStyle = 'rgba(255,255,255)';
                     ctx.fill();
                     ctx.strokeStyle = '#404040';
+                    ctx.lineWidth = 5;
                     ctx.stroke();
                 }))
             });
@@ -174,13 +176,17 @@
     canvas {
         border: 1px solid #000;
         position:absolute;
-        top:30px;
-        width:400px;
-        height:240px;
+        top:10px;
+        width:92%;
+        height:78%;
     }
     button {
         position: absolute;
-        bottom: 10px;
+        bottom: 8px;
         cursor: pointer;
+    }
+    .save-button{
+        margin-left: 34%;
+        margin-bottom:0.6%;
     }
 </style>

@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "b2wordcloud": "^2.0.2",
+    "bp2wordcloud": "^1.0.0",
     "echarts": "^5.6.0",
     "echarts-wordcloud": "^2.1.0",
+    "html-loader": "^5.1.0",
     "js2wordcloud": "^1.1.12",
     "leaflet": "^1.9.4",
     "leaflet-draw": "^1.0.4",
@@ -23,9 +25,12 @@
     "wordcloud2": "^1.0.0"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^5.2.1",
+    "@vitejs/plugin-vue": "^5.2.3",
+    "eslint": "^9.24.0",
+    "eslint-plugin-vue": "^10.0.0",
     "sass-embedded": "^1.85.1",
     "vite": "^6.0.5",
+    "vite-plugin-html": "^3.2.2",
     "vite-plugin-vue-devtools": "^7.6.8",
     "vite-plugin-vue-setup-extend": "^0.4.0"
   }

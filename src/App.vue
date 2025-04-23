@@ -2,11 +2,13 @@
   <wordinput/>
   <textcontainer/>
   <leafletmap/>
-  <wordcloud/>
+  <!-- <wordcloud/> -->
   <dragfile/>
   <mapcanvas/>
-  <wordcloud2/>
+  <!-- <wordcloud2/> -->
   <wordcloud3/>
+  <!-- <wordcloud5/> -->
+  <outsidehtml/>
   <!-- <ImageUploader/> -->
 </template>
 
@@ -19,7 +21,9 @@
   import mapcanvas from './components/mapcanvas.vue';
   import wordcloud2 from './components/wordcloud2.vue';
   import wordcloud3 from './components/wordcloud3.vue';
+  import wordcloud5 from './components/wordcloud5.vue';
   //import ImageUploader from './components/ImageUploader.vue';
+  import outsidehtml from './components/outsidehtml.vue';
 </script>
 
 

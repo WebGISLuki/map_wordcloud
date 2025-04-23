@@ -1,14 +1,13 @@
 <template>
     <div class="textinput">
-        <h3>文本输入</h3>
+        <h3 align="center">文本输入</h3>
         <!-- <input type="text" style="width:200px;height:50px" v-model="message"/> -->
         <textarea 
-        style="border-radius: 10px;" 
         v-model="message" 
         class="inputTextarea">
     
         </textarea>
-        <button style="margin-top: 5px;" @click="textrender">生成容器</button>
+        <button style="margin-top: 5px;margin-left: 35%;" @click="textrender">生成容器</button>
     </div>
 </template>
 

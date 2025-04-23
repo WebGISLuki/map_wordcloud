@@ -19,7 +19,7 @@
         @dragover.prevent="onDragOver"
         @drop.prevent="onDrop"
         class="dragfile"
-        style="border: 2px dashed #ccc; padding: 20px; text-align: center;">
+        style="border: 2px dashed #ccc; text-align: center;">
             拖拽 GeoJSON 文件到这里
         </div>
     </div>

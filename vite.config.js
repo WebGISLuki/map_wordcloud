@@ -1,5 +1,6 @@
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
+import { createHtmlPlugin } from 'vite-plugin-html'
 import vue from '@vitejs/plugin-vue'
 import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 
@@ -19,7 +20,15 @@ export default defineConfig({
           }
         }
       }
-    }
+    },
+    createHtmlPlugin({
+      minify: true,
+      inject: {
+        injectData: {
+          title: 'My App'
+        }
+      }
+    })
   ],
   resolve: {
     alias: {
